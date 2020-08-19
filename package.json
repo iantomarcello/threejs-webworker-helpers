@@ -7,12 +7,44 @@
     "three": "^0.119.1"
   },
   "devDependencies": {
-    "es-dev-server": "^1.57.2"
+    "es-dev-server": "^1.57.2",
+    "eslint": "^7.7.0"
   },
   "scripts": {
     "start": "es-dev-server --node-resolve --watch --open --port 8088",
+    "lint": "npx eslint . --fix --ignore-path .gitignore",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2020": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "ecmaVersion": 11,
+      "sourceType": "module"
+    },
+    "rules": {
+      "indent": [
+        "error",
+        2
+      ],
+      "linebreak-style": [
+        "error",
+        "windows"
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ]
+    }
+  }
+,
   "author": "Ian Yong (iantomarcello)",
   "license": "MIT"
 }
