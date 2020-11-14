@@ -9,6 +9,8 @@ worker.postMessage({
 	pixelRatio: window.devicePixelRatio,
 }, [ offscreen ]);
 
+worker.onerror = err => console.trace(err);
+
 window.addEventListener("resize", ev => {
   worker.postMessage({
     id: 'resize',

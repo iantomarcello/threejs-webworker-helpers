@@ -43,8 +43,7 @@
         "always"
       ]
     }
-  }
-,
+  },
   "author": "Ian Yong (iantomarcello)",
   "license": "MIT"
 }
