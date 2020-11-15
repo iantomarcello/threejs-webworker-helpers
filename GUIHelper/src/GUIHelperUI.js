@@ -2,6 +2,9 @@
  *  A THREEJS wrapper function that allows GUI to connect to the web workers.
  *  This file is for the UI.
  *  Sadly, this is only a simple example, not for sofisticated works. :(
+ *  @param {Object} guiHelperParams, an object in a structure similar that
+ *  of ./GUIHelperParams.js
+ *  @param {Worker} worker, the offscreen canvas Web Worker. 
  */
 
 import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
