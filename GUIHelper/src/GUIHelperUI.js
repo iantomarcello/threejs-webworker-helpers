@@ -4,7 +4,7 @@
  *  Sadly, this is only a simple example, not for sofisticated works. :(
  *  @param {Object} guiHelperParams, an object in a structure similar that
  *  of ./GUIHelperParams.js
- *  @param {Worker} worker, the offscreen canvas Web Worker. 
+ *  @param {Worker} worker, the offscreen canvas Web Worker.
  */
 
 import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
@@ -39,6 +39,12 @@ const GUIHelperUI = (guiHelperParams, worker) => {
       case 'colour':
       case 'color':
         gui.addColor(params, key).onChange(newValue => {
+          post(key, newValue);
+        });
+        break;
+
+      case 'select':
+        gui.add(params, key, value.value).onChange(newValue => {
           post(key, newValue);
         });
         break;

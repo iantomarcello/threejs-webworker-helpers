@@ -4,7 +4,7 @@
 
 import {
   Scene, PerspectiveCamera, WebGLRenderer, GridHelper,
-  Mesh, IcosahedronGeometry, MeshPhysicalMaterial,
+  Mesh, TorusKnotBufferGeometry, MeshPhysicalMaterial,
   AmbientLight, PointLight
 } from 'three';
 import GUIHelperWorker from '../src/GUIHelperWorker.js';
@@ -22,9 +22,9 @@ let ambLight;
 let pntLight;
 
 let gridHelper;
-let boxGeo;
-let boxMat;
-let box;
+let torusGeo;
+let torusMat;
+let torus;
 
 self.addEventListener('message', ev => {
   let data = ev.data;
@@ -56,17 +56,17 @@ self.addEventListener('message', ev => {
         animate();
 
 
-        boxGeo = new IcosahedronGeometry(30, 0);
+        torusGeo = new TorusKnotBufferGeometry(18, 8, 150, 20);
         let params = {};
         for ( let [key, value] of Object.entries(GUIHelperParams) ) {
           params[key] = value.value;
         }
-        boxMat = new MeshPhysicalMaterial(params);
+        torusMat = new MeshPhysicalMaterial(params);
 
-        box = new Mesh(boxGeo, boxMat);
-        box.position.z = -300;
-        box.position.y = 40;
-        scene.add(box);
+        torus = new Mesh(torusGeo, torusMat);
+        torus.position.z = -180;
+        torus.position.y = 40;
+        scene.add(torus);
 
       })();
       break;
@@ -84,16 +84,24 @@ self.addEventListener('message', ev => {
 const animate = () => {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
-  if ( box ) {
-    box.rotation.y += 0.01;
-    box.rotation.x += 0.001;
+  if ( torus ) {
+    torus.rotation.y += 0.01;
+    torus.rotation.x += 0.001;
   }
 };
 
 GUIHelperWorker((key, value) => {
   if ( key === 'color' ) {
-    boxMat.color.setHex(value);
+    torusMat.color.setHex(value);
+
+  } else if ( key === 'emissive' ) {
+    torusMat.emissive.setHex(value);
+
+  } else if ( key === 'transparency' ) {
+    torusMat.transparent = true;
+    torusMat.transmission = value;
+
   } else {
-    boxMat[key] = value;
+    torusMat[key] = value;
   }
 });
