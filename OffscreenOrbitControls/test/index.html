@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <title>THREEJS Web Worker Helpers - Offscreen Orbit Controls</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500&display=swap" rel="stylesheet">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Roboto Slab", serif;
+      }
+
+      #webgl-canvas {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+      }
+
+      header {
+        top: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      header h1 {
+        font-size: 22px;
+        text-align: center;
+      }
+
+      header h2 {
+        font-size: 16px;
+        text-align: center;
+      }
+
+      footer {
+        bottom: 15px;
+        left: 15px;
+      }
+
+      .note {
+        position: absolute;
+        z-index: 1;
+        filter: invert(1);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="note">
+      <h1>THREEJS Web Worker Helpers - Offscreen Orbit Controls</h1>
+      <h2>A set of functions that makes the OribitControls run on web workers.</h2>
+    </header>
+    <canvas id="webgl-canvas"></canvas>
+    <footer class="note">
+    </footer>
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
